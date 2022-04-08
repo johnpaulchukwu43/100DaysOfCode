@@ -1,7 +1,9 @@
 package com.jworks.arrays;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ArrayPractice5 {
 
@@ -16,16 +18,19 @@ public class ArrayPractice5 {
 
     public static boolean checkIfExist(int[] arr) {
 
-        Map<Integer,Integer> numsMap = new HashMap<>();
+        Set numSet = new HashSet<>();
 
-        for (int i = 0; i < arr.length; i++) {
-            numsMap.put(arr[i] *2, i);
-        }
 
-        for (int j : arr) {
-            if (numsMap.containsKey(j) && j!= 0) {
+        for (int num : arr) {
+            if (numSet.contains(num)) {
                 return true;
             }
+
+            if (num % 2 == 0) {
+                numSet.add(num / 2);
+            }
+
+            numSet.add(num * 2);
         }
 
         return false;
@@ -33,7 +38,7 @@ public class ArrayPractice5 {
 
     public static void main(String[] args) {
         // sample run
-        int [] nums = new int[]{-2,0,10,-19,4,6,-8};
+        int [] nums = new int[]{0,0};
         System.out.println(checkIfExist(nums));
     }
 
