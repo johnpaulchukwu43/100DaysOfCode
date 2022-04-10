@@ -13,7 +13,7 @@ public class ArrayPractice6 {
     public static void main(String[] args) {
         // sample run
         int [] nums = new int[]{17,18,5,4,6,1};
-        System.out.println(Arrays.toString(replaceElementsNaiveApproach(nums)));
+        System.out.println(Arrays.toString(replaceElementsMoreOptimalApproach(nums)));
     }
 
     public static int[] replaceElementsNaiveApproach(int[] arr) {
@@ -35,6 +35,34 @@ public class ArrayPractice6 {
         }
 
         arr[length - 1] = -1;
+
+        return arr;
+    }
+
+    public static int[] replaceElementsMoreOptimalApproach(int[]arr){
+        /*
+        * 1. Initialize the CURRENT_RIGHT_MOST_MAX_VALUE = -1
+        *
+        * 2. Loop through Array ARR in reverse order
+        *
+        * 3. Assign  CURRENT_RIGHT_MOST_MAX_VALUE to a TEMP container
+        *
+        * 4. If current item I in ARR is greater than the CURRENT_RIGHT_MOST_MAX_VALUE then assign set new CURRENT_RIGHT_MOST_MAX_VALUE as I
+        *
+        * 5. Then set I as TEMP
+        *
+        * */
+
+        int currentRightMostValue = -1;
+
+        for (int i = arr.length - 1; i >= 0 ; i--) {
+
+            int temp = currentRightMostValue;
+
+            if(currentRightMostValue < arr[i]) currentRightMostValue = arr[i];
+
+            arr[i] = temp;
+        }
 
         return arr;
     }
